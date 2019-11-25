@@ -13,18 +13,19 @@ export default class DetayPage extends Component {
     }
   }
   componentDidMount() {
-    const id = queryString.parse(this.props.location.search).id
+    const id = queryString.parse(this.props.location.search).id;
     axios.get(`${fullPath}/${id}`)
       .then(res => {
         this.setState({
           pet: res.data
         })
-      });
+      })
+      .catch(err => console.error(err.message));
   }
 
   render() {
     const { name, breed, image, description, age } = this.state.pet;
-    return (
+    const Pet = (
       <div className="col-lg-6 col-md-4 my-4 mx-auto">
         <h2><Link to="/">Geri Dön</Link></h2>
         <div className="card h-100">
@@ -48,6 +49,21 @@ export default class DetayPage extends Component {
           </div>
         </div>
       </div>
-    )
+    );
+    const NoPet = (
+      <div className="container">
+        <div className="row">
+          <div className="col-10 mx-auto text-center text-title text-uppercase pt-5">
+            <h1 className="display-3">404</h1>
+            <h1>error</h1>
+            <h2>page not found</h2>
+            <h3>the requested URL <span className="text-danger">{this.props.location.pathname + this.props.location.search}</span> was not found</h3>
+          </div>
+        </div>
+      </div>
+    );
+    return (
+      this.state.pet.name ? Pet : NoPet
+    );
   }
 }
