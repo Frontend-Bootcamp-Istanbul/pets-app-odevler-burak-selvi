@@ -1,9 +1,9 @@
 import React from 'react';
-import {Sidebar, PetList} from "../components";
+import { Sidebar, PetList } from "../components";
 
 
-class HomePage extends React.Component{
-    constructor(props){
+class HomePage extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             activeFilter: "",
@@ -13,6 +13,7 @@ class HomePage extends React.Component{
 
     componentDidMount() {
         document.title = "Home Page";
+        window.scroll()
     }
 
     componentWillUnmount() {
@@ -31,7 +32,7 @@ class HomePage extends React.Component{
         });
     }
 
-    render(){
+    render() {
         return (
             <div>
                 <div className="container">

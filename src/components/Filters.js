@@ -1,9 +1,8 @@
 import React from 'react';
-import {breedOptions} from "../constants";
+import { breedOptions } from "../constants";
 import classNames from "classnames";
 
 function Filters(props) {
-    console.log(props.activeFilter);
     return (
         <div>
             <h4 className="my-4 text-left">Cins</h4>
@@ -23,7 +22,7 @@ function Filters(props) {
                             className={classNames({
                                 "list-group-item": true,
                                 "active": breed === props.activeFilter
-                                }
+                            }
                             )}
                             onClick={(e) => {
                                 e.preventDefault();
