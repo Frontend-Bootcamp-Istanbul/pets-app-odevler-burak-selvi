@@ -13,7 +13,6 @@ class HomePage extends React.Component {
 
     componentDidMount() {
         document.title = "Home Page";
-        window.scroll()
     }
 
     componentWillUnmount() {

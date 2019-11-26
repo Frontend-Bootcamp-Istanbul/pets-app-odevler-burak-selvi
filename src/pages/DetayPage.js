@@ -9,7 +9,8 @@ export default class DetayPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pet: {}
+      pet: {},
+      yukleniyor: true
     }
   }
   componentDidMount() {
@@ -17,10 +18,16 @@ export default class DetayPage extends Component {
     axios.get(`${fullPath}/${id}`)
       .then(res => {
         this.setState({
-          pet: res.data
-        })
+          pet: res.data,
+          yukleniyor: false
+        });
       })
-      .catch(err => console.error(err.message));
+      .catch(err => {
+        console.error(err.message);
+        this.setState({
+          yukleniyor: false
+        });
+      });
   }
 
   render() {
@@ -62,8 +69,16 @@ export default class DetayPage extends Component {
         </div>
       </div>
     );
-    return (
-      this.state.pet.name ? Pet : NoPet
+    const yukleniyor = (
+      <div>Yukleniyor</div>
     );
+    if(this.state.yukleniyor){
+      return yukleniyor;
+    }
+    if(this.state.pet.name){
+      return Pet;
+    } else {
+      return NoPet;
+    }
   }
 }
